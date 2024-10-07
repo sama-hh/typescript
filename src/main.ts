@@ -1,24 +1,40 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+type Grade = 1 | 2 | 3 | 4 | 5 | 6 | "A" | "B" | "C" | "D" | "E" | "F" | undefined;
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+type Student = {
+    firstName: string;
+    lastName: string;
+    age: number;
+    grades: Grade[];
+};
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const student1: Student = {
+    firstName: "John",
+    lastName: "Smith",
+    age: 20,
+    grades: ["A", 2, "F", 3, 1, "B", undefined, 5]
+};
+
+const student2: Student = {
+    firstName: "Alex",
+    lastName: "Jackson",
+    age: 21,
+    grades: ["A", 4, "F", 3, undefined, "B", undefined, 5]
+};
+
+const students: Student[] = [student1, student2]
+
+console.log(student1)
+
+const studentGrades = (student: Student) => {
+    return ` ${student.firstName} ${student.lastName} (${student.age}) \n ${"=".repeat(30)}\n Grades: 
+    ${student.grades.map(grade => grade === undefined ? "*" : grade).join(", ")}`;
+}
+
+console.log(studentGrades(student1));
+
+students.map(student => console.log(studentGrades(student)));
+
+
+
+
+
