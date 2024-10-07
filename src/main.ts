@@ -64,4 +64,4 @@ const studentGrades = (student: Student) => {
 
 console.log(studentGrades(student1));
 
-students.map(student => console.log(studentGrades(student)));
+students.forEach(student => console.log(studentGrades(student)));
